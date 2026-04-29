@@ -16,11 +16,11 @@
             background-position: center; 
         }
 
-        /* Efeito de Lupa em todos os containers de zoom */
         .zoom-target {
             position: relative;
             overflow: hidden;
             cursor: zoom-in;
+            border-radius: 1rem;
         }
         .zoom-target img {
             transition: transform 0.3s ease-out;
@@ -30,7 +30,6 @@
             transform: scale(2.2);
         }
 
-        /* Modal de Imagem Inteira com Lupa Interna */
         #zoom-modal { 
             display: none; 
             position: fixed; 
@@ -55,29 +54,28 @@
             max-height: 100%;
             object-fit: contain;
             transition: transform 0.2s ease-out;
+            transform-origin: center center;
         }
     </style>
 </head>
 <body class="bg-zinc-950 text-white overflow-x-hidden">
 
-    <!-- Menu -->
     <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div class="text-2xl font-extrabold italic tracking-tighter">STO<span class="text-red-600">RÊ</span> SPORT</div>
             
             <div class="flex items-center space-x-4">
-                <a href="https://instagram.com/store_sport_premium" target="_blank" class="bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-2.5 rounded-full hover:scale-110 transition shadow-lg">
+                <a href="https://www.instagram.com/store.modasport/" target="_blank" class="bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-2.5 rounded-full hover:scale-110 transition shadow-lg">
                     <i class="fab fa-instagram text-white text-lg"></i>
                 </a>
-                <a href="https://wa.me/5551996468027" target="_blank" class="bg-green-500 p-2.5 rounded-full hover:bg-green-600 transition shadow-lg hover:scale-110">
+                <a href="https://wa.me/5551996468027" target="_blank" class="bg-green-500 p-2.5 rounded-full hover:bg-green-600 transition shadow-lg hover:scale-110 border-2 border-white/10">
                     <i class="fab fa-whatsapp text-white text-lg"></i>
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section (Texto Original Restaurado) -->
-    <section class="hero-gradient h-[80vh] flex items-center justify-center pt-20 text-center">
+    <section class="hero-gradient h-[75vh] flex items-center justify-center pt-20 text-center">
         <div class="container mx-auto px-6">
             <h1 class="text-5xl md:text-8xl font-black mb-6 uppercase italic leading-none">Performance<br><span class="text-red-600">Absoluta.</span></h1>
             <p class="text-lg text-zinc-300 mb-8 max-w-2xl mx-auto font-light italic">Sinta a tecnologia Rala Bela em cada movimento.</p>
@@ -91,61 +89,58 @@
         </div>
     </section>
 
-    <!-- Tecnologia (DNA Têxtil Restaurado) -->
     <section id="tecnologia" class="py-24 bg-zinc-900 border-y border-white/5">
         <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
             <div class="md:w-1/2">
                 <h2 class="text-4xl font-black uppercase italic mb-8">DNA Têxtil <br><span class="text-red-600">Inovação Rala Bela</span></h2>
-                <p class="text-zinc-400 leading-relaxed font-light mb-8">Fios inteligentes que garantem durabilidade, compressão ideal e conforto térmico absoluto para alta performance.</p>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-zinc-800 p-4 rounded-xl border border-white/5">
-                        <i class="fas fa-wind text-red-600 mb-2"></i>
-                        <h6 class="font-bold text-xs uppercase">Respirável</h6>
+                <p class="text-zinc-400 leading-relaxed font-light mb-8 italic text-lg">Fios inteligentes que garantem durabilidade, compressão ideal e conforto térmico absoluto para alta performance em qualquer clima.</p>
+                <div class="grid grid-cols-2 gap-4 text-center">
+                    <div class="bg-zinc-800 p-6 rounded-2xl border border-white/5">
+                        <i class="fas fa-wind text-red-600 text-2xl mb-3"></i>
+                        <h6 class="font-bold text-xs uppercase tracking-widest">Respirável</h6>
                     </div>
-                    <div class="bg-zinc-800 p-4 rounded-xl border border-white/5">
-                        <i class="fas fa-shield-alt text-red-600 mb-2"></i>
-                        <h6 class="font-bold text-xs uppercase">UV Protection</h6>
+                    <div class="bg-zinc-800 p-6 rounded-2xl border border-white/5">
+                        <i class="fas fa-shield-alt text-red-600 text-2xl mb-3"></i>
+                        <h6 class="font-bold text-xs uppercase tracking-widest">UV Protection</h6>
                     </div>
                 </div>
             </div>
             <div class="md:w-1/2">
                 <div class="zoom-target rounded-3xl shadow-2xl overflow-hidden" onmousemove="zoom(event)">
-                    <img src="conjunto.jpeg" class="w-full object-cover max-h-[600px]" alt="Conjunto StoRê">
+                    <img src="conjunto.jpeg" class="w-full object-cover" alt="Conjunto Premium StoRê">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Vitrine Organizada -->
     <section id="colecao" class="py-24 bg-white text-black">
         <div class="container mx-auto px-6 text-center mb-20">
-            <h2 class="text-4xl font-black uppercase italic">Drop Outono/Inverno 2026</h2>
-            <p class="text-zinc-500 uppercase tracking-widest text-xs mt-2">Toque no produto para ver detalhes com lupa</p>
+            <h2 class="text-4xl font-black uppercase italic">Drop Premium 2026</h2>
+            <p class="text-zinc-500 uppercase tracking-widest text-xs mt-2">Passe o mouse para ver detalhes | Clique para ampliar</p>
             <div class="h-1 w-20 bg-red-600 mx-auto mt-6"></div>
         </div>
         
         <div class="container mx-auto px-6 space-y-24">
             
-            <!-- Grupo: Blusas e T-Shirts -->
             <div>
                 <h3 class="text-xl font-black uppercase border-l-8 border-red-600 pl-4 mb-10 italic">Blusas & T-Shirts</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                    <div class="product-card">
-                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('blusa-modal.jpg')">
+                    <div class="product-card group">
+                        <div class="zoom-target shadow-xl mb-4" onmousemove="zoom(event)" onclick="openFullImage('blusa-modal.jpg')">
                             <img src="blusa-modal.jpg" class="w-full h-[450px] object-cover">
                         </div>
                         <h4 class="font-bold uppercase text-sm">Blusa Modal</h4>
                         <p class="text-red-600 font-black italic">R$ 198,00</p>
                     </div>
-                    <div class="product-card">
-                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('t-shirt-ultracool.jpg')">
+                    <div class="product-card group">
+                        <div class="zoom-target shadow-xl mb-4" onmousemove="zoom(event)" onclick="openFullImage('t-shirt-ultracool.jpg')">
                             <img src="t-shirt-ultracool.jpg" class="w-full h-[450px] object-cover">
                         </div>
                         <h4 class="font-bold uppercase text-sm">T-Shirt Ultracool</h4>
                         <p class="text-red-600 font-black italic">R$ 189,90</p>
                     </div>
-                    <div class="product-card">
-                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('blusa-termica.jpg')">
+                    <div class="product-card group">
+                        <div class="zoom-target shadow-xl mb-4" onmousemove="zoom(event)" onclick="openFullImage('blusa-termica.jpg')">
                             <img src="blusa-termica.jpg" class="w-full h-[450px] object-cover">
                         </div>
                         <h4 class="font-bold uppercase text-sm">Blusa Térmica</h4>
@@ -154,19 +149,18 @@
                 </div>
             </div>
 
-            <!-- Grupo: Jaquetas e Parkas -->
             <div>
                 <h3 class="text-xl font-black uppercase border-l-8 border-red-600 pl-4 mb-10 italic">Jaquetas & Parkas</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                     <div class="product-card">
-                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('jaqueta-fly.jpg')">
+                        <div class="zoom-target shadow-xl mb-4" onmousemove="zoom(event)" onclick="openFullImage('jaqueta-fly.jpg')">
                             <img src="jaqueta-fly.jpg" class="w-full h-[550px] object-cover">
                         </div>
                         <h4 class="font-bold uppercase text-sm text-center">Jaqueta Fly</h4>
                         <p class="text-red-600 font-black italic text-center">R$ 342,00</p>
                     </div>
                     <div class="product-card">
-                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('parka-impermeavel.jpg')">
+                        <div class="zoom-target shadow-xl mb-4" onmousemove="zoom(event)" onclick="openFullImage('parka-impermeavel.jpg')">
                             <img src="parka-impermeavel.jpg" class="w-full h-[550px] object-cover">
                         </div>
                         <h4 class="font-bold uppercase text-sm text-center">Parka Impermeável</h4>
@@ -175,26 +169,25 @@
                 </div>
             </div>
 
-            <!-- Grupo: Calças e Leggings -->
             <div>
                 <h3 class="text-xl font-black uppercase border-l-8 border-red-600 pl-4 mb-10 italic">Leggings & Jogging</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                     <div class="product-card">
-                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('legging-neo-fit.jpg')">
+                        <div class="zoom-target shadow-xl mb-4" onmousemove="zoom(event)" onclick="openFullImage('legging-neo-fit.jpg')">
                             <img src="legging-neo-fit.jpg" class="w-full h-[450px] object-cover">
                         </div>
                         <h4 class="font-bold uppercase text-sm">Legging Neo Fit</h4>
                         <p class="text-red-600 font-black italic">R$ 294,90</p>
                     </div>
                     <div class="product-card">
-                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('legging-nz.jpg')">
+                        <div class="zoom-target shadow-xl mb-4" onmousemove="zoom(event)" onclick="openFullImage('legging-nz.jpg')">
                             <img src="legging-nz.jpg" class="w-full h-[450px] object-cover">
                         </div>
                         <h4 class="font-bold uppercase text-sm">Legging NZ</h4>
                         <p class="text-red-600 font-black italic">R$ 278,00</p>
                     </div>
                     <div class="product-card">
-                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('jogging-essence.jpg')">
+                        <div class="zoom-target shadow-xl mb-4" onmousemove="zoom(event)" onclick="openFullImage('jogging-essence.jpg')">
                             <img src="jogging-essence.jpg" class="w-full h-[450px] object-cover">
                         </div>
                         <h4 class="font-bold uppercase text-sm">Jogging Essence</h4>
@@ -206,22 +199,20 @@
         </div>
     </section>
 
-    <!-- Feedback Restaurado -->
-    <section id="feedback" class="py-24 bg-zinc-100 text-black border-t border-zinc-200">
+    <section id="feedback" class="py-24 bg-zinc-100 text-black">
         <div class="container mx-auto px-6 text-center mb-12">
             <h2 class="text-4xl font-black uppercase italic">Experiência StoRê</h2>
-            <p class="text-zinc-500 uppercase tracking-widest text-xs mt-2">Sua opinião constrói nossa excelência</p>
             <div class="h-1 w-20 bg-red-600 mx-auto mt-6"></div>
         </div>
-        <div class="container mx-auto px-6 max-w-4xl bg-white p-8 md:p-12 rounded-[2rem] shadow-inner">
+        <div class="container mx-auto px-6 max-w-4xl bg-white p-12 rounded-[2rem] shadow-xl">
             <form action="https://formsubmit.co/remodinhavirtual@gmail.com" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="space-y-6">
                     <input type="text" name="nome" placeholder="Seu Nome Completo" class="w-full p-4 bg-zinc-50 rounded-xl outline-none border border-zinc-200 focus:border-red-600 transition" required>
                     <input type="email" name="email" placeholder="Seu E-mail" class="w-full p-4 bg-zinc-50 rounded-xl outline-none border border-zinc-200 focus:border-red-600 transition" required>
                 </div>
-                <div class="space-y-6">
-                    <textarea name="mensagem" rows="4" placeholder="Como foi sua experiência com nossas peças?" class="w-full p-4 bg-zinc-50 rounded-xl outline-none border border-zinc-200 focus:border-red-600 transition" required></textarea>
-                    <button type="submit" class="w-full bg-black text-white py-4 rounded-xl font-black uppercase tracking-widest hover:bg-red-600 transition shadow-lg">Enviar Avaliação</button>
+                <div class="space-y-6 text-right">
+                    <textarea name="mensagem" rows="4" placeholder="Deixe sua avaliação sobre nossas peças..." class="w-full p-4 bg-zinc-50 rounded-xl outline-none border border-zinc-200 focus:border-red-600 transition" required></textarea>
+                    <button type="submit" class="bg-black text-white px-12 py-4 rounded-xl font-black uppercase tracking-widest hover:bg-red-600 transition shadow-lg">Enviar Feedback</button>
                 </div>
             </form>
         </div>
@@ -229,31 +220,27 @@
 
     <footer class="py-12 bg-zinc-950 text-center">
         <div class="flex justify-center space-x-6 mb-6">
-            <a href="https://instagram.com/store_sport_premium" target="_blank" class="text-zinc-600 hover:text-white transition text-2xl"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/store.modasport/" target="_blank" class="text-zinc-600 hover:text-white transition text-2xl"><i class="fab fa-instagram"></i></a>
             <a href="https://wa.me/5551996468027" target="_blank" class="text-zinc-600 hover:text-white transition text-2xl"><i class="fab fa-whatsapp"></i></a>
         </div>
         <p class="text-[10px] text-zinc-700 uppercase tracking-[0.5em]">&copy; 2026 StoRê Sport - Curadoria Premium</p>
-    </footer >
+    </footer>
 
-    <!-- Modal de Zoom com Lupa Interna -->
     <div id="zoom-modal">
         <div class="modal-content-wrapper" onclick="closeModal()" onmousemove="modalZoom(event)" onmouseleave="resetModalZoom()">
             <img id="zoom-img-modal" src="">
         </div>
     </div>
 
-    <!-- Scripts de Interatividade -->
     <script>
-        // Função para o zoom na vitrine
         function zoom(e) {
             const container = e.currentTarget;
             const img = container.querySelector('img');
-            const x = e.offsetX / container.offsetWidth * 100;
-            const y = e.offsetY / container.offsetHeight * 100;
+            const x = (e.offsetX / container.offsetWidth) * 100;
+            const y = (e.offsetY / container.offsetHeight) * 100;
             img.style.transformOrigin = `${x}% ${y}%`;
         }
 
-        // Abrir Modal
         function openFullImage(src) {
             const modal = document.getElementById('zoom-modal');
             const img = document.getElementById('zoom-img-modal');
@@ -262,23 +249,18 @@
             document.body.style.overflow = 'hidden';
         }
 
-        // Fechar Modal
         function closeModal() {
             document.getElementById('zoom-modal').style.display = 'none';
             document.body.style.overflow = 'auto';
             resetModalZoom();
         }
 
-        // Zoom dentro do Modal (Lupa Profissional)
         function modalZoom(e) {
             const wrapper = e.currentTarget;
             const img = document.getElementById('zoom-img-modal');
-            
-            // Posição do mouse relativa ao wrapper
             const rect = wrapper.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
             const y = ((e.clientY - rect.top) / rect.height) * 100;
-            
             img.style.transformOrigin = `${x}% ${y}%`;
             img.style.transform = 'scale(2.5)';
         }
