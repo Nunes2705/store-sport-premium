@@ -10,8 +10,14 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .hero-gradient { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; }
-        .product-card img { aspect-ratio: 3/4; object-fit: cover; border-radius: 12px; transition: transform 0.5s; }
-        .product-card:hover img { transform: scale(1.03); }
+        
+        /* Efeito de Lupa e Cursor */
+        .product-card img { cursor: zoom-in; transition: transform 0.5s; }
+        .product-card:hover img { transform: scale(1.05); }
+
+        /* Estilo do Modal de Zoom */
+        #zoom-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; cursor: zoom-out; }
+        #zoom-img { max-width: 90%; max-height: 90vh; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body class="bg-zinc-950 text-white overflow-x-hidden">
@@ -28,34 +34,21 @@
         </div>
     </nav>
 
-    <section class="hero-gradient h-[80vh] flex items-center justify-center pt-20">
+    <section class="hero-gradient h-[70vh] flex items-center justify-center pt-20">
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-6xl md:text-9xl font-black mb-6 uppercase italic leading-none">Performance<br><span class="text-red-600 text-shadow-xl">Absoluta.</span></h1>
-            <p class="text-zinc-400 text-lg mb-10 italic font-light">Sinta a tecnologia Rala Bela em cada movimento.</p>
-            <a href="#colecao" class="bg-white text-black hover:bg-red-600 hover:text-white px-12 py-5 rounded-full font-black uppercase tracking-widest transition-all">Ver Coleção</a>
+            <h1 class="text-6xl md:text-8xl font-black mb-6 uppercase italic leading-none">Performance<br><span class="text-red-600">Absoluta.</span></h1>
+            <a href="#colecao" class="bg-white text-black hover:bg-red-600 hover:text-white px-10 py-4 rounded-full font-black uppercase tracking-widest transition-all inline-block">Ver Coleção</a>
         </div>
     </section>
 
-    <section id="tecnologia" class="py-32 bg-zinc-900">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center gap-20">
-                <div class="md:w-1/2 space-y-8">
-                    <h2 class="text-5xl font-black uppercase italic leading-tight">DNA Têxtil <br><span class="text-red-600">Inovação Rala Bela</span></h2>
-                    <p class="text-zinc-400 text-xl leading-relaxed font-light">Nossas peças são desenvolvidas com fios inteligentes que garantem durabilidade, compressão na medida certa e conforto térmico para qualquer estação.</p>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="bg-zinc-800/50 p-8 rounded-3xl border border-white/5 hover:border-red-600/30 transition">
-                            <i class="fas fa-wind text-3xl text-red-600 mb-4"></i>
-                            <h6 class="font-black text-sm uppercase tracking-tighter">Respirabilidade Superior</h6>
-                        </div>
-                        <div class="bg-zinc-800/50 p-8 rounded-3xl border border-white/5 hover:border-red-600/30 transition">
-                            <i class="fas fa-bolt text-3xl text-red-600 mb-4"></i>
-                            <h6 class="font-black text-sm uppercase tracking-tighter">Alta Compressão</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-1/2">
-                    <img src="conjunto.jpeg" class="rounded-[2rem] shadow-[0_0_50px_rgba(220,38,38,0.2)] w-full object-cover" alt="Modelo StoRê">
-                </div>
+    <section id="tecnologia" class="py-24 bg-zinc-900">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
+            <div class="md:w-1/2">
+                <h2 class="text-4xl font-black uppercase italic mb-8">DNA Têxtil <br><span class="text-red-600">Inovação Rala Bela</span></h2>
+                <p class="text-zinc-400 leading-relaxed font-light">Fios inteligentes que garantem durabilidade, compressão e conforto térmico.</p>
+            </div>
+            <div class="md:w-1/2">
+                <img src="conjunto.jpeg" class="rounded-3xl shadow-2xl w-full object-cover max-h-[600px] cursor-pointer" alt="Modelo StoRê" onclick="openZoom(this.src)">
             </div>
         </div>
     </section>
@@ -63,93 +56,77 @@
     <section id="colecao" class="py-24 bg-white text-black">
         <div class="container mx-auto px-6 text-center mb-16">
             <h2 class="text-4xl font-black uppercase italic mb-4">Coleção Premium</h2>
-            <div class="w-20 h-1 bg-red-600 mx-auto"></div>
+            <p class="text-zinc-500 text-xs uppercase tracking-widest">Clique na foto para ampliar com a lupa</p>
+            <div class="w-20 h-1 bg-red-600 mx-auto mt-4"></div>
         </div>
         
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
-            
-            <div class="product-card group cursor-pointer">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg">
-                    <img src="blusa-modal.jpg" class="w-full h-[400px] object-cover group-hover:scale-105 transition duration-500">
-                </div>
+            <div class="product-card group" onclick="openZoom('blusa-modal.jpg')">
+                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="blusa-modal.jpg" class="w-full h-[400px] object-cover"></div>
                 <h4 class="font-bold uppercase text-sm">Blusa Modal</h4>
                 <p class="text-red-600 font-black">R$ 198,00</p>
             </div>
-
-            <div class="product-card group cursor-pointer">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg">
-                    <img src="blusa-termica.jpg" class="w-full h-[400px] object-cover group-hover:scale-105 transition duration-500">
-                </div>
+            <div class="product-card group" onclick="openZoom('blusa-termica.jpg')">
+                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="blusa-termica.jpg" class="w-full h-[400px] object-cover"></div>
                 <h4 class="font-bold uppercase text-sm">Blusa Térmica</h4>
                 <p class="text-red-600 font-black">R$ 167,00</p>
             </div>
-
-            <div class="product-card group cursor-pointer">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg">
-                    <img src="jaqueta-fly.jpg" class="w-full h-[400px] object-cover group-hover:scale-105 transition duration-500">
-                </div>
+            <div class="product-card group" onclick="openZoom('jaqueta-fly.jpg')">
+                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="jaqueta-fly.jpg" class="w-full h-[400px] object-cover"></div>
                 <h4 class="font-bold uppercase text-sm">Jaqueta Fly</h4>
                 <p class="text-red-600 font-black">R$ 342,00</p>
             </div>
-
-            <div class="product-card group cursor-pointer">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg">
-                    <img src="jogging-essence.jpg" class="w-full h-[400px] object-cover group-hover:scale-105 transition duration-500">
-                </div>
+            <div class="product-card group" onclick="openZoom('jogging-essence.jpg')">
+                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="jogging-essence.jpg" class="w-full h-[400px] object-cover"></div>
                 <h4 class="font-bold uppercase text-sm">Jogging Essence</h4>
                 <p class="text-red-600 font-black">R$ 289,00</p>
             </div>
-
-            <div class="product-card group cursor-pointer">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg">
-                    <img src="legging-neo-fit.jpg" class="w-full h-[400px] object-cover group-hover:scale-105 transition duration-500">
-                </div>
+            <div class="product-card group" onclick="openZoom('legging-neo-fit.jpg')">
+                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="legging-neo-fit.jpg" class="w-full h-[400px] object-cover"></div>
                 <h4 class="font-bold uppercase text-sm">Legging Neo Fit</h4>
                 <p class="text-red-600 font-black">R$ 294,90</p>
             </div>
-
-            <div class="product-card group cursor-pointer">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg">
-                    <img src="legging-nz.jpg" class="w-full h-[400px] object-cover group-hover:scale-105 transition duration-500">
-                </div>
+            <div class="product-card group" onclick="openZoom('legging-nz.jpg')">
+                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="legging-nz.jpg" class="w-full h-[400px] object-cover"></div>
                 <h4 class="font-bold uppercase text-sm">Legging NZ</h4>
                 <p class="text-red-600 font-black">R$ 278,00</p>
             </div>
-
-            <div class="product-card group cursor-pointer">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg">
-                    <img src="parka-impermeavel.jpg" class="w-full h-[400px] object-cover group-hover:scale-105 transition duration-500">
-                </div>
+            <div class="product-card group" onclick="openZoom('parka-impermeavel.jpg')">
+                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="parka-impermeavel.jpg" class="w-full h-[400px] object-cover"></div>
                 <h4 class="font-bold uppercase text-sm">Parka Impermeável</h4>
                 <p class="text-red-600 font-black">R$ 459,00</p>
             </div>
-
-            <div class="product-card group cursor-pointer">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg">
-                    <img src="t-shirt-ultracool.jpg" class="w-full h-[400px] object-cover group-hover:scale-105 transition duration-500">
-                </div>
+            <div class="product-card group" onclick="openZoom('t-shirt-ultracool.jpg')">
+                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="t-shirt-ultracool.jpg" class="w-full h-[400px] object-cover"></div>
                 <h4 class="font-bold uppercase text-sm">T-Shirt Ultracool</h4>
                 <p class="text-red-600 font-black">R$ 189,90</p>
             </div>
-
         </div>
     </section>
 
-    <section id="feedback" class="py-32 bg-zinc-100 text-black">
-        <div class="container mx-auto px-6 max-w-4xl bg-white p-12 md:p-20 rounded-[3rem] shadow-xl text-center">
-            <h2 class="text-4xl font-black uppercase italic mb-8 text-zinc-900">Sua opinião é vital</h2>
-            <form action="https://formsubmit.co/remodinhavirtual@gmail.com" method="POST" class="space-y-6 text-left">
-                <input type="text" name="nome" placeholder="Seu Nome" class="w-full p-5 bg-zinc-50 border-none rounded-2xl focus:ring-2 focus:ring-red-600 outline-none" required>
-                <textarea name="mensagem" rows="4" placeholder="Como foi sua experiência com a StoRê?" class="w-full p-5 bg-zinc-50 border-none rounded-2xl focus:ring-2 focus:ring-red-600 outline-none" required></textarea>
-                <button type="submit" class="w-full bg-black text-white py-6 rounded-2xl font-black uppercase tracking-widest hover:bg-red-600 transition-colors">Enviar Feedback</button>
-            </form>
-        </div>
-    </section>
+    <div id="zoom-modal" onclick="closeZoom()">
+        <img id="zoom-img" src="">
+    </div>
 
-    <footer class="py-16 bg-zinc-950 text-center border-t border-white/5">
-        <div class="text-xl font-black mb-4 italic">STO<span class="text-red-600">RÊ</span> SPORT</div>
-        <p class="text-[10px] text-zinc-600 uppercase tracking-[0.5em]">&copy; 2026 StoRê Sport - Curadoria Premium</p>
+    <footer class="py-12 bg-zinc-950 text-center border-t border-white/5">
+        <p class="text-[10px] text-zinc-600 uppercase tracking-widest">&copy; 2026 StoRê Sport - Curadoria Premium</p>
     </footer>
+
+    <script>
+        function openZoom(src) {
+            const modal = document.getElementById('zoom-modal');
+            const img = document.getElementById('zoom-img');
+            img.src = src;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Trava o scroll do site
+        }
+
+        function closeZoom() {
+            const modal = document.getElementById('zoom-modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Destrava o scroll
+        }
+    </script>
 
 </body>
 </html>
