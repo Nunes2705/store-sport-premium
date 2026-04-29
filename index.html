@@ -11,139 +11,165 @@
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .hero-gradient { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; }
         
-        /* Efeito de Lupa Dinâmica (Zoom Interno) */
-        .zoom-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            cursor: crosshair;
-            aspect-ratio: 3/4;
-        }
+        /* Lupa no Hover */
+        .zoom-container { position: relative; overflow: hidden; border-radius: 12px; cursor: zoom-in; aspect-ratio: 3/4; }
+        .zoom-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease-out; transform-origin: center center; }
+        .zoom-container:hover img { transform: scale(2.2); }
 
-        .zoom-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease-out;
-            transform-origin: center center;
-        }
-
-        .zoom-container:hover img {
-            transform: scale(2.5); /* Nível de zoom nos detalhes */
-        }
+        /* Modal de Imagem Inteira */
+        #zoom-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; cursor: zoom-out; }
+        #zoom-img { max-width: 90%; max-height: 90vh; border-radius: 8px; }
     </style>
 </head>
 <body class="bg-zinc-950 text-white overflow-x-hidden">
 
     <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-extrabold tracking-tighter italic">STO<span class="text-red-600">RÊ</span> SPORT</div>
+            <div class="text-2xl font-extrabold italic">STO<span class="text-red-600">RÊ</span> SPORT</div>
             <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest">
-                <a href="#tecnologia" class="hover:text-red-500 transition">Tecnologia</a>
                 <a href="#colecao" class="hover:text-red-500 transition">Coleção</a>
+                <a href="#feedback" class="hover:text-red-500 transition">Avaliações</a>
+                <a href="https://www.instagram.com/store_sport_premium/" target="_blank" class="text-pink-500 hover:text-white transition text-lg"><i class="fab fa-instagram"></i></a>
             </div>
-            <a href="https://wa.me/5551996468027" target="_blank" class="bg-red-600 px-5 py-2.5 rounded-full text-[10px] font-black uppercase">WhatsApp</a>
+            <a href="https://wa.me/5551996468027" target="_blank" class="bg-green-500 hover:bg-green-600 p-3 rounded-full transition shadow-lg">
+                <i class="fab fa-whatsapp text-xl"></i>
+            </a>
         </div>
     </nav>
 
-    <section class="hero-gradient h-[60vh] flex items-center justify-center pt-20 text-center">
+    <section class="hero-gradient h-[70vh] flex items-center justify-center pt-20 text-center">
         <div class="container mx-auto px-6">
-            <h1 class="text-6xl md:text-8xl font-black mb-6 uppercase italic leading-none">Performance<br><span class="text-red-600">Absoluta.</span></h1>
+            <h1 class="text-6xl md:text-8xl font-black mb-4 uppercase italic leading-none">Performance<br><span class="text-red-600">Absoluta.</span></h1>
+            <p class="text-zinc-400 mb-8 uppercase tracking-[0.3em] text-sm">Parcelamento em até 6x no cartão</p>
+            <a href="#colecao" class="bg-white text-black hover:bg-red-600 hover:text-white px-10 py-4 rounded-full font-black uppercase tracking-widest transition-all inline-block">Explorar Lançamentos</a>
         </div>
     </section>
 
     <section id="colecao" class="py-24 bg-white text-black">
         <div class="container mx-auto px-6 text-center mb-16">
             <h2 class="text-4xl font-black uppercase italic mb-4">Coleção Premium</h2>
-            <p class="text-zinc-500 text-xs uppercase tracking-widest italic">Passe o mouse para ver detalhes do tecido</p>
-            <div class="w-20 h-1 bg-red-600 mx-auto mt-4"></div>
+            <p class="text-zinc-500 text-xs uppercase tracking-widest italic font-bold">Passe o mouse para detalhes | Clique para ampliar</p>
         </div>
         
-        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
+        <div class="container mx-auto px-6 space-y-20">
             
-            <div class="product-card group">
-                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
-                    <img src="blusa-modal.jpg" alt="Blusa Modal">
+            <div>
+                <h3 class="text-xl font-bold uppercase border-l-4 border-red-600 pl-4 mb-8">Blusas & T-Shirts</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div class="product-card group">
+                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('blusa-modal.jpg')">
+                            <img src="blusa-modal.jpg">
+                        </div>
+                        <h4 class="font-bold uppercase text-sm">Blusa Modal</h4>
+                        <p class="text-red-600 font-black italic">R$ 198,00</p>
+                    </div>
+                    <div class="product-card group">
+                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('t-shirt-ultracool.jpg')">
+                            <img src="t-shirt-ultracool.jpg">
+                        </div>
+                        <h4 class="font-bold uppercase text-sm">T-Shirt Ultracool</h4>
+                        <p class="text-red-600 font-black italic">R$ 189,90</p>
+                    </div>
                 </div>
-                <h4 class="font-bold uppercase text-sm">Blusa Modal</h4>
-                <p class="text-red-600 font-black">R$ 198,00</p>
             </div>
 
-            <div class="product-card group">
-                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
-                    <img src="blusa-termica.jpg" alt="Blusa Térmica">
+            <div>
+                <h3 class="text-xl font-bold uppercase border-l-4 border-red-600 pl-4 mb-8">Jaquetas & Parkas</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div class="product-card group">
+                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('jaqueta-fly.jpg')">
+                            <img src="jaqueta-fly.jpg">
+                        </div>
+                        <h4 class="font-bold uppercase text-sm">Jaqueta Fly</h4>
+                        <p class="text-red-600 font-black italic">R$ 342,00</p>
+                    </div>
+                    <div class="product-card group">
+                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('parka-impermeavel.jpg')">
+                            <img src="parka-impermeavel.jpg">
+                        </div>
+                        <h4 class="font-bold uppercase text-sm">Parka Impermeável</h4>
+                        <p class="text-red-600 font-black italic">R$ 459,00</p>
+                    </div>
+                    <div class="product-card group">
+                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('blusa-termica.jpg')">
+                            <img src="blusa-termica.jpg">
+                        </div>
+                        <h4 class="font-bold uppercase text-sm">Blusa Térmica</h4>
+                        <p class="text-red-600 font-black italic">R$ 167,00</p>
+                    </div>
                 </div>
-                <h4 class="font-bold uppercase text-sm">Blusa Térmica</h4>
-                <p class="text-red-600 font-black">R$ 167,00</p>
             </div>
 
-            <div class="product-card group">
-                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
-                    <img src="jaqueta-fly.jpg" alt="Jaqueta Fly">
+            <div>
+                <h3 class="text-xl font-bold uppercase border-l-4 border-red-600 pl-4 mb-8">Leggings & Jogging</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div class="product-card group">
+                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('legging-neo-fit.jpg')">
+                            <img src="legging-neo-fit.jpg">
+                        </div>
+                        <h4 class="font-bold uppercase text-sm">Legging Neo Fit</h4>
+                        <p class="text-red-600 font-black italic">R$ 294,90</p>
+                    </div>
+                    <div class="product-card group">
+                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('legging-nz.jpg')">
+                            <img src="legging-nz.jpg">
+                        </div>
+                        <h4 class="font-bold uppercase text-sm">Legging NZ</h4>
+                        <p class="text-red-600 font-black italic">R$ 278,00</p>
+                    </div>
+                    <div class="product-card group">
+                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('jogging-essence.jpg')">
+                            <img src="jogging-essence.jpg">
+                        </div>
+                        <h4 class="font-bold uppercase text-sm">Jogging Essence</h4>
+                        <p class="text-red-600 font-black italic">R$ 289,00</p>
+                    </div>
                 </div>
-                <h4 class="font-bold uppercase text-sm">Jaqueta Fly</h4>
-                <p class="text-red-600 font-black">R$ 342,00</p>
-            </div>
-
-            <div class="product-card group">
-                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
-                    <img src="jogging-essence.jpg" alt="Jogging Essence">
-                </div>
-                <h4 class="font-bold uppercase text-sm">Jogging Essence</h4>
-                <p class="text-red-600 font-black">R$ 289,00</p>
-            </div>
-
-            <div class="product-card group">
-                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
-                    <img src="legging-neo-fit.jpg" alt="Legging Neo Fit">
-                </div>
-                <h4 class="font-bold uppercase text-sm">Legging Neo Fit</h4>
-                <p class="text-red-600 font-black">R$ 294,90</p>
-            </div>
-
-            <div class="product-card group">
-                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
-                    <img src="legging-nz.jpg" alt="Legging NZ">
-                </div>
-                <h4 class="font-bold uppercase text-sm">Legging NZ</h4>
-                <p class="text-red-600 font-black">R$ 278,00</p>
-            </div>
-
-            <div class="product-card group">
-                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
-                    <img src="parka-impermeavel.jpg" alt="Parka">
-                </div>
-                <h4 class="font-bold uppercase text-sm">Parka Impermeável</h4>
-                <p class="text-red-600 font-black">R$ 459,00</p>
-            </div>
-
-            <div class="product-card group">
-                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
-                    <img src="t-shirt-ultracool.jpg" alt="T-Shirt">
-                </div>
-                <h4 class="font-bold uppercase text-sm">T-Shirt Ultracool</h4>
-                <p class="text-red-600 font-black">R$ 189,90</p>
             </div>
 
         </div>
     </section>
 
+    <section id="feedback" class="py-24 bg-zinc-100 text-black">
+        <div class="container mx-auto px-6 max-w-2xl bg-white p-12 rounded-3xl shadow-xl">
+            <h2 class="text-3xl font-black uppercase italic mb-8 text-center text-zinc-900">Experiência StoRê</h2>
+            <form action="https://formsubmit.co/remodinhavirtual@gmail.com" method="POST" class="space-y-4">
+                <input type="text" name="nome" placeholder="Seu Nome" class="w-full p-4 bg-zinc-50 rounded-xl outline-none border border-zinc-200" required>
+                <textarea name="mensagem" rows="3" placeholder="Sua opinião é vital..." class="w-full p-4 bg-zinc-50 rounded-xl outline-none border border-zinc-200" required></textarea>
+                <button type="submit" class="w-full bg-black text-white py-4 rounded-xl font-black uppercase tracking-widest hover:bg-red-600 transition">Enviar Feedback</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-zinc-950 text-center">
+        <div class="flex justify-center space-x-6 mb-6">
+            <a href="https://www.instagram.com/store_sport_premium/" target="_blank" class="text-zinc-500 hover:text-white transition text-2xl"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5551996468027" target="_blank" class="text-zinc-500 hover:text-white transition text-2xl"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p class="text-[10px] text-zinc-600 uppercase tracking-widest">&copy; 2026 StoRê Sport - Curadoria Premium</p>
+    </footer>
+
+    <div id="zoom-modal" onclick="this.style.display='none'">
+        <img id="zoom-img" src="">
+    </div>
+
     <script>
         function zoom(e) {
             const container = e.currentTarget;
             const img = container.querySelector('img');
-            
-            // Calcula a posição do mouse em percentagem dentro da div
             const x = e.offsetX / container.offsetWidth * 100;
             const y = e.offsetY / container.offsetHeight * 100;
-            
-            // Move o ponto de origem do zoom para onde o mouse está
             img.style.transformOrigin = `${x}% ${y}%`;
         }
-
         function resetZoom(e) {
             const img = e.currentTarget.querySelector('img');
             img.style.transformOrigin = `center center`;
+        }
+        function openFullImage(src) {
+            const modal = document.getElementById('zoom-modal');
+            const img = document.getElementById('zoom-img');
+            img.src = src;
+            modal.style.display = 'flex';
         }
     </script>
 
