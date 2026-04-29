@@ -3,96 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StoRê Sport | Coleção 2026</title>
+    <title>StoRê Sport | Curadoria Premium</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; }
         
-        /* Lupa no Hover */
-        .zoom-container { position: relative; overflow: hidden; border-radius: 12px; cursor: zoom-in; aspect-ratio: 3/4; }
-        .zoom-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease-out; transform-origin: center center; }
-        .zoom-container:hover img { transform: scale(2.2); }
+        .hero-gradient { 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1920&q=80'); 
+            background-size: cover; 
+            background-position: center; 
+        }
 
-        /* Modal de Imagem Inteira */
-        #zoom-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 1000; align-items: center; justify-content: center; cursor: zoom-out; }
-        #zoom-img { max-width: 90%; max-height: 90vh; border-radius: 8px; }
+        /* Efeito de Lupa em todos os containers de zoom */
+        .zoom-target {
+            position: relative;
+            overflow: hidden;
+            cursor: zoom-in;
+        }
+        .zoom-target img {
+            transition: transform 0.3s ease-out;
+            transform-origin: center center;
+        }
+        .zoom-target:hover img {
+            transform: scale(2.2);
+        }
+
+        /* Modal de Imagem Inteira com Lupa Interna */
+        #zoom-modal { 
+            display: none; 
+            position: fixed; 
+            inset: 0; 
+            background: rgba(0,0,0,0.95); 
+            z-index: 1000; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .modal-content-wrapper {
+            position: relative;
+            width: 90%;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: zoom-out;
+        }
+        #zoom-img-modal {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.2s ease-out;
+        }
     </style>
 </head>
 <body class="bg-zinc-950 text-white overflow-x-hidden">
 
+    <!-- Menu -->
     <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-extrabold italic">STO<span class="text-red-600">RÊ</span> SPORT</div>
-            <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest">
-                <a href="#colecao" class="hover:text-red-500 transition">Coleção</a>
-                <a href="#feedback" class="hover:text-red-500 transition">Avaliações</a>
-                <a href="https://www.instagram.com/store_sport_premium/" target="_blank" class="text-pink-500 hover:text-white transition text-lg"><i class="fab fa-instagram"></i></a>
+            <div class="text-2xl font-extrabold italic tracking-tighter">STO<span class="text-red-600">RÊ</span> SPORT</div>
+            
+            <div class="flex items-center space-x-4">
+                <a href="https://instagram.com/store_sport_premium" target="_blank" class="bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600 p-2.5 rounded-full hover:scale-110 transition shadow-lg">
+                    <i class="fab fa-instagram text-white text-lg"></i>
+                </a>
+                <a href="https://wa.me/5551996468027" target="_blank" class="bg-green-500 p-2.5 rounded-full hover:bg-green-600 transition shadow-lg hover:scale-110">
+                    <i class="fab fa-whatsapp text-white text-lg"></i>
+                </a>
             </div>
-            <a href="https://wa.me/5551996468027" target="_blank" class="bg-green-500 hover:bg-green-600 p-3 rounded-full transition shadow-lg">
-                <i class="fab fa-whatsapp text-xl"></i>
-            </a>
         </div>
     </nav>
 
-    <section class="hero-gradient h-[70vh] flex items-center justify-center pt-20 text-center">
+    <!-- Hero Section (Texto Original Restaurado) -->
+    <section class="hero-gradient h-[80vh] flex items-center justify-center pt-20 text-center">
         <div class="container mx-auto px-6">
-            <h1 class="text-6xl md:text-8xl font-black mb-4 uppercase italic leading-none">Performance<br><span class="text-red-600">Absoluta.</span></h1>
-            <p class="text-zinc-400 mb-8 uppercase tracking-[0.3em] text-sm">Parcelamento em até 6x no cartão</p>
-            <a href="#colecao" class="bg-white text-black hover:bg-red-600 hover:text-white px-10 py-4 rounded-full font-black uppercase tracking-widest transition-all inline-block">Explorar Lançamentos</a>
+            <h1 class="text-5xl md:text-8xl font-black mb-6 uppercase italic leading-none">Performance<br><span class="text-red-600">Absoluta.</span></h1>
+            <p class="text-lg text-zinc-300 mb-8 max-w-2xl mx-auto font-light italic">Sinta a tecnologia Rala Bela em cada movimento.</p>
+            
+            <div class="flex flex-col items-center gap-4">
+                <a href="#colecao" class="bg-red-600 hover:bg-red-700 text-white px-10 py-5 rounded-full font-bold transition uppercase tracking-widest shadow-2xl">
+                    Explorar Lançamentos
+                </a>
+                <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 font-bold">Parcelamento em até 6x no cartão</p>
+            </div>
         </div>
     </section>
 
+    <!-- Tecnologia (DNA Têxtil Restaurado) -->
+    <section id="tecnologia" class="py-24 bg-zinc-900 border-y border-white/5">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
+            <div class="md:w-1/2">
+                <h2 class="text-4xl font-black uppercase italic mb-8">DNA Têxtil <br><span class="text-red-600">Inovação Rala Bela</span></h2>
+                <p class="text-zinc-400 leading-relaxed font-light mb-8">Fios inteligentes que garantem durabilidade, compressão ideal e conforto térmico absoluto para alta performance.</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-zinc-800 p-4 rounded-xl border border-white/5">
+                        <i class="fas fa-wind text-red-600 mb-2"></i>
+                        <h6 class="font-bold text-xs uppercase">Respirável</h6>
+                    </div>
+                    <div class="bg-zinc-800 p-4 rounded-xl border border-white/5">
+                        <i class="fas fa-shield-alt text-red-600 mb-2"></i>
+                        <h6 class="font-bold text-xs uppercase">UV Protection</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <div class="zoom-target rounded-3xl shadow-2xl overflow-hidden" onmousemove="zoom(event)">
+                    <img src="conjunto.jpeg" class="w-full object-cover max-h-[600px]" alt="Conjunto StoRê">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vitrine Organizada -->
     <section id="colecao" class="py-24 bg-white text-black">
-        <div class="container mx-auto px-6 text-center mb-16">
-            <h2 class="text-4xl font-black uppercase italic mb-4">Coleção Premium</h2>
-            <p class="text-zinc-500 text-xs uppercase tracking-widest italic font-bold">Passe o mouse para detalhes | Clique para ampliar</p>
+        <div class="container mx-auto px-6 text-center mb-20">
+            <h2 class="text-4xl font-black uppercase italic">Drop Outono/Inverno 2026</h2>
+            <p class="text-zinc-500 uppercase tracking-widest text-xs mt-2">Toque no produto para ver detalhes com lupa</p>
+            <div class="h-1 w-20 bg-red-600 mx-auto mt-6"></div>
         </div>
         
-        <div class="container mx-auto px-6 space-y-20">
+        <div class="container mx-auto px-6 space-y-24">
             
+            <!-- Grupo: Blusas e T-Shirts -->
             <div>
-                <h3 class="text-xl font-bold uppercase border-l-4 border-red-600 pl-4 mb-8">Blusas & T-Shirts</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div class="product-card group">
-                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('blusa-modal.jpg')">
-                            <img src="blusa-modal.jpg">
+                <h3 class="text-xl font-black uppercase border-l-8 border-red-600 pl-4 mb-10 italic">Blusas & T-Shirts</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="product-card">
+                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('blusa-modal.jpg')">
+                            <img src="blusa-modal.jpg" class="w-full h-[450px] object-cover">
                         </div>
                         <h4 class="font-bold uppercase text-sm">Blusa Modal</h4>
                         <p class="text-red-600 font-black italic">R$ 198,00</p>
                     </div>
-                    <div class="product-card group">
-                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('t-shirt-ultracool.jpg')">
-                            <img src="t-shirt-ultracool.jpg">
+                    <div class="product-card">
+                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('t-shirt-ultracool.jpg')">
+                            <img src="t-shirt-ultracool.jpg" class="w-full h-[450px] object-cover">
                         </div>
                         <h4 class="font-bold uppercase text-sm">T-Shirt Ultracool</h4>
                         <p class="text-red-600 font-black italic">R$ 189,90</p>
                     </div>
-                </div>
-            </div>
-
-            <div>
-                <h3 class="text-xl font-bold uppercase border-l-4 border-red-600 pl-4 mb-8">Jaquetas & Parkas</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div class="product-card group">
-                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('jaqueta-fly.jpg')">
-                            <img src="jaqueta-fly.jpg">
-                        </div>
-                        <h4 class="font-bold uppercase text-sm">Jaqueta Fly</h4>
-                        <p class="text-red-600 font-black italic">R$ 342,00</p>
-                    </div>
-                    <div class="product-card group">
-                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('parka-impermeavel.jpg')">
-                            <img src="parka-impermeavel.jpg">
-                        </div>
-                        <h4 class="font-bold uppercase text-sm">Parka Impermeável</h4>
-                        <p class="text-red-600 font-black italic">R$ 459,00</p>
-                    </div>
-                    <div class="product-card group">
-                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('blusa-termica.jpg')">
-                            <img src="blusa-termica.jpg">
+                    <div class="product-card">
+                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('blusa-termica.jpg')">
+                            <img src="blusa-termica.jpg" class="w-full h-[450px] object-cover">
                         </div>
                         <h4 class="font-bold uppercase text-sm">Blusa Térmica</h4>
                         <p class="text-red-600 font-black italic">R$ 167,00</p>
@@ -100,26 +154,48 @@
                 </div>
             </div>
 
+            <!-- Grupo: Jaquetas e Parkas -->
             <div>
-                <h3 class="text-xl font-bold uppercase border-l-4 border-red-600 pl-4 mb-8">Leggings & Jogging</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div class="product-card group">
-                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('legging-neo-fit.jpg')">
-                            <img src="legging-neo-fit.jpg">
+                <h3 class="text-xl font-black uppercase border-l-8 border-red-600 pl-4 mb-10 italic">Jaquetas & Parkas</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="product-card">
+                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('jaqueta-fly.jpg')">
+                            <img src="jaqueta-fly.jpg" class="w-full h-[550px] object-cover">
+                        </div>
+                        <h4 class="font-bold uppercase text-sm text-center">Jaqueta Fly</h4>
+                        <p class="text-red-600 font-black italic text-center">R$ 342,00</p>
+                    </div>
+                    <div class="product-card">
+                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('parka-impermeavel.jpg')">
+                            <img src="parka-impermeavel.jpg" class="w-full h-[550px] object-cover">
+                        </div>
+                        <h4 class="font-bold uppercase text-sm text-center">Parka Impermeável</h4>
+                        <p class="text-red-600 font-black italic text-center">R$ 459,00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grupo: Calças e Leggings -->
+            <div>
+                <h3 class="text-xl font-black uppercase border-l-8 border-red-600 pl-4 mb-10 italic">Leggings & Jogging</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="product-card">
+                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('legging-neo-fit.jpg')">
+                            <img src="legging-neo-fit.jpg" class="w-full h-[450px] object-cover">
                         </div>
                         <h4 class="font-bold uppercase text-sm">Legging Neo Fit</h4>
                         <p class="text-red-600 font-black italic">R$ 294,90</p>
                     </div>
-                    <div class="product-card group">
-                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('legging-nz.jpg')">
-                            <img src="legging-nz.jpg">
+                    <div class="product-card">
+                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('legging-nz.jpg')">
+                            <img src="legging-nz.jpg" class="w-full h-[450px] object-cover">
                         </div>
                         <h4 class="font-bold uppercase text-sm">Legging NZ</h4>
                         <p class="text-red-600 font-black italic">R$ 278,00</p>
                     </div>
-                    <div class="product-card group">
-                        <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)" onclick="openFullImage('jogging-essence.jpg')">
-                            <img src="jogging-essence.jpg">
+                    <div class="product-card">
+                        <div class="zoom-target shadow-xl mb-4 rounded-2xl" onmousemove="zoom(event)" onclick="openFullImage('jogging-essence.jpg')">
+                            <img src="jogging-essence.jpg" class="w-full h-[450px] object-cover">
                         </div>
                         <h4 class="font-bold uppercase text-sm">Jogging Essence</h4>
                         <p class="text-red-600 font-black italic">R$ 289,00</p>
@@ -130,30 +206,45 @@
         </div>
     </section>
 
-    <section id="feedback" class="py-24 bg-zinc-100 text-black">
-        <div class="container mx-auto px-6 max-w-2xl bg-white p-12 rounded-3xl shadow-xl">
-            <h2 class="text-3xl font-black uppercase italic mb-8 text-center text-zinc-900">Experiência StoRê</h2>
-            <form action="https://formsubmit.co/remodinhavirtual@gmail.com" method="POST" class="space-y-4">
-                <input type="text" name="nome" placeholder="Seu Nome" class="w-full p-4 bg-zinc-50 rounded-xl outline-none border border-zinc-200" required>
-                <textarea name="mensagem" rows="3" placeholder="Sua opinião é vital..." class="w-full p-4 bg-zinc-50 rounded-xl outline-none border border-zinc-200" required></textarea>
-                <button type="submit" class="w-full bg-black text-white py-4 rounded-xl font-black uppercase tracking-widest hover:bg-red-600 transition">Enviar Feedback</button>
+    <!-- Feedback Restaurado -->
+    <section id="feedback" class="py-24 bg-zinc-100 text-black border-t border-zinc-200">
+        <div class="container mx-auto px-6 text-center mb-12">
+            <h2 class="text-4xl font-black uppercase italic">Experiência StoRê</h2>
+            <p class="text-zinc-500 uppercase tracking-widest text-xs mt-2">Sua opinião constrói nossa excelência</p>
+            <div class="h-1 w-20 bg-red-600 mx-auto mt-6"></div>
+        </div>
+        <div class="container mx-auto px-6 max-w-4xl bg-white p-8 md:p-12 rounded-[2rem] shadow-inner">
+            <form action="https://formsubmit.co/remodinhavirtual@gmail.com" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <input type="text" name="nome" placeholder="Seu Nome Completo" class="w-full p-4 bg-zinc-50 rounded-xl outline-none border border-zinc-200 focus:border-red-600 transition" required>
+                    <input type="email" name="email" placeholder="Seu E-mail" class="w-full p-4 bg-zinc-50 rounded-xl outline-none border border-zinc-200 focus:border-red-600 transition" required>
+                </div>
+                <div class="space-y-6">
+                    <textarea name="mensagem" rows="4" placeholder="Como foi sua experiência com nossas peças?" class="w-full p-4 bg-zinc-50 rounded-xl outline-none border border-zinc-200 focus:border-red-600 transition" required></textarea>
+                    <button type="submit" class="w-full bg-black text-white py-4 rounded-xl font-black uppercase tracking-widest hover:bg-red-600 transition shadow-lg">Enviar Avaliação</button>
+                </div>
             </form>
         </div>
     </section>
 
     <footer class="py-12 bg-zinc-950 text-center">
         <div class="flex justify-center space-x-6 mb-6">
-            <a href="https://www.instagram.com/store_sport_premium/" target="_blank" class="text-zinc-500 hover:text-white transition text-2xl"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/5551996468027" target="_blank" class="text-zinc-500 hover:text-white transition text-2xl"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://instagram.com/store_sport_premium" target="_blank" class="text-zinc-600 hover:text-white transition text-2xl"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5551996468027" target="_blank" class="text-zinc-600 hover:text-white transition text-2xl"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p class="text-[10px] text-zinc-600 uppercase tracking-widest">&copy; 2026 StoRê Sport - Curadoria Premium</p>
-    </footer>
+        <p class="text-[10px] text-zinc-700 uppercase tracking-[0.5em]">&copy; 2026 StoRê Sport - Curadoria Premium</p>
+    </footer >
 
-    <div id="zoom-modal" onclick="this.style.display='none'">
-        <img id="zoom-img" src="">
+    <!-- Modal de Zoom com Lupa Interna -->
+    <div id="zoom-modal">
+        <div class="modal-content-wrapper" onclick="closeModal()" onmousemove="modalZoom(event)" onmouseleave="resetModalZoom()">
+            <img id="zoom-img-modal" src="">
+        </div>
     </div>
 
+    <!-- Scripts de Interatividade -->
     <script>
+        // Função para o zoom na vitrine
         function zoom(e) {
             const container = e.currentTarget;
             const img = container.querySelector('img');
@@ -161,15 +252,41 @@
             const y = e.offsetY / container.offsetHeight * 100;
             img.style.transformOrigin = `${x}% ${y}%`;
         }
-        function resetZoom(e) {
-            const img = e.currentTarget.querySelector('img');
-            img.style.transformOrigin = `center center`;
-        }
+
+        // Abrir Modal
         function openFullImage(src) {
             const modal = document.getElementById('zoom-modal');
-            const img = document.getElementById('zoom-img');
+            const img = document.getElementById('zoom-img-modal');
             img.src = src;
             modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Fechar Modal
+        function closeModal() {
+            document.getElementById('zoom-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            resetModalZoom();
+        }
+
+        // Zoom dentro do Modal (Lupa Profissional)
+        function modalZoom(e) {
+            const wrapper = e.currentTarget;
+            const img = document.getElementById('zoom-img-modal');
+            
+            // Posição do mouse relativa ao wrapper
+            const rect = wrapper.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            
+            img.style.transformOrigin = `${x}% ${y}%`;
+            img.style.transform = 'scale(2.5)';
+        }
+
+        function resetModalZoom() {
+            const img = document.getElementById('zoom-img-modal');
+            img.style.transform = 'scale(1)';
+            img.style.transformOrigin = 'center center';
         }
     </script>
 
