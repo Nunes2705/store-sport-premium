@@ -11,13 +11,26 @@
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .hero-gradient { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; }
         
-        /* Efeito de Lupa e Cursor */
-        .product-card img { cursor: zoom-in; transition: transform 0.5s; }
-        .product-card:hover img { transform: scale(1.05); }
+        /* Efeito de Lupa Dinâmica (Zoom Interno) */
+        .zoom-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: crosshair;
+            aspect-ratio: 3/4;
+        }
 
-        /* Estilo do Modal de Zoom */
-        #zoom-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center; cursor: zoom-out; }
-        #zoom-img { max-width: 90%; max-height: 90vh; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        .zoom-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-out;
+            transform-origin: center center;
+        }
+
+        .zoom-container:hover img {
+            transform: scale(2.5); /* Nível de zoom nos detalhes */
+        }
     </style>
 </head>
 <body class="bg-zinc-950 text-white overflow-x-hidden">
@@ -28,103 +41,109 @@
             <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest">
                 <a href="#tecnologia" class="hover:text-red-500 transition">Tecnologia</a>
                 <a href="#colecao" class="hover:text-red-500 transition">Coleção</a>
-                <a href="#feedback" class="hover:text-red-500 transition">Avaliações</a>
             </div>
-            <a href="https://wa.me/5551996468027" target="_blank" class="bg-red-600 hover:bg-red-700 px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition">WhatsApp</a>
+            <a href="https://wa.me/5551996468027" target="_blank" class="bg-red-600 px-5 py-2.5 rounded-full text-[10px] font-black uppercase">WhatsApp</a>
         </div>
     </nav>
 
-    <section class="hero-gradient h-[70vh] flex items-center justify-center pt-20">
-        <div class="container mx-auto px-6 text-center">
+    <section class="hero-gradient h-[60vh] flex items-center justify-center pt-20 text-center">
+        <div class="container mx-auto px-6">
             <h1 class="text-6xl md:text-8xl font-black mb-6 uppercase italic leading-none">Performance<br><span class="text-red-600">Absoluta.</span></h1>
-            <a href="#colecao" class="bg-white text-black hover:bg-red-600 hover:text-white px-10 py-4 rounded-full font-black uppercase tracking-widest transition-all inline-block">Ver Coleção</a>
-        </div>
-    </section>
-
-    <section id="tecnologia" class="py-24 bg-zinc-900">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
-            <div class="md:w-1/2">
-                <h2 class="text-4xl font-black uppercase italic mb-8">DNA Têxtil <br><span class="text-red-600">Inovação Rala Bela</span></h2>
-                <p class="text-zinc-400 leading-relaxed font-light">Fios inteligentes que garantem durabilidade, compressão e conforto térmico.</p>
-            </div>
-            <div class="md:w-1/2">
-                <img src="conjunto.jpeg" class="rounded-3xl shadow-2xl w-full object-cover max-h-[600px] cursor-pointer" alt="Modelo StoRê" onclick="openZoom(this.src)">
-            </div>
         </div>
     </section>
 
     <section id="colecao" class="py-24 bg-white text-black">
         <div class="container mx-auto px-6 text-center mb-16">
             <h2 class="text-4xl font-black uppercase italic mb-4">Coleção Premium</h2>
-            <p class="text-zinc-500 text-xs uppercase tracking-widest">Clique na foto para ampliar com a lupa</p>
+            <p class="text-zinc-500 text-xs uppercase tracking-widest italic">Passe o mouse para ver detalhes do tecido</p>
             <div class="w-20 h-1 bg-red-600 mx-auto mt-4"></div>
         </div>
         
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
-            <div class="product-card group" onclick="openZoom('blusa-modal.jpg')">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="blusa-modal.jpg" class="w-full h-[400px] object-cover"></div>
+            
+            <div class="product-card group">
+                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
+                    <img src="blusa-modal.jpg" alt="Blusa Modal">
+                </div>
                 <h4 class="font-bold uppercase text-sm">Blusa Modal</h4>
                 <p class="text-red-600 font-black">R$ 198,00</p>
             </div>
-            <div class="product-card group" onclick="openZoom('blusa-termica.jpg')">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="blusa-termica.jpg" class="w-full h-[400px] object-cover"></div>
+
+            <div class="product-card group">
+                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
+                    <img src="blusa-termica.jpg" alt="Blusa Térmica">
+                </div>
                 <h4 class="font-bold uppercase text-sm">Blusa Térmica</h4>
                 <p class="text-red-600 font-black">R$ 167,00</p>
             </div>
-            <div class="product-card group" onclick="openZoom('jaqueta-fly.jpg')">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="jaqueta-fly.jpg" class="w-full h-[400px] object-cover"></div>
+
+            <div class="product-card group">
+                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
+                    <img src="jaqueta-fly.jpg" alt="Jaqueta Fly">
+                </div>
                 <h4 class="font-bold uppercase text-sm">Jaqueta Fly</h4>
                 <p class="text-red-600 font-black">R$ 342,00</p>
             </div>
-            <div class="product-card group" onclick="openZoom('jogging-essence.jpg')">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="jogging-essence.jpg" class="w-full h-[400px] object-cover"></div>
+
+            <div class="product-card group">
+                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
+                    <img src="jogging-essence.jpg" alt="Jogging Essence">
+                </div>
                 <h4 class="font-bold uppercase text-sm">Jogging Essence</h4>
                 <p class="text-red-600 font-black">R$ 289,00</p>
             </div>
-            <div class="product-card group" onclick="openZoom('legging-neo-fit.jpg')">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="legging-neo-fit.jpg" class="w-full h-[400px] object-cover"></div>
+
+            <div class="product-card group">
+                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
+                    <img src="legging-neo-fit.jpg" alt="Legging Neo Fit">
+                </div>
                 <h4 class="font-bold uppercase text-sm">Legging Neo Fit</h4>
                 <p class="text-red-600 font-black">R$ 294,90</p>
             </div>
-            <div class="product-card group" onclick="openZoom('legging-nz.jpg')">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="legging-nz.jpg" class="w-full h-[400px] object-cover"></div>
+
+            <div class="product-card group">
+                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
+                    <img src="legging-nz.jpg" alt="Legging NZ">
+                </div>
                 <h4 class="font-bold uppercase text-sm">Legging NZ</h4>
                 <p class="text-red-600 font-black">R$ 278,00</p>
             </div>
-            <div class="product-card group" onclick="openZoom('parka-impermeavel.jpg')">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="parka-impermeavel.jpg" class="w-full h-[400px] object-cover"></div>
+
+            <div class="product-card group">
+                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
+                    <img src="parka-impermeavel.jpg" alt="Parka">
+                </div>
                 <h4 class="font-bold uppercase text-sm">Parka Impermeável</h4>
                 <p class="text-red-600 font-black">R$ 459,00</p>
             </div>
-            <div class="product-card group" onclick="openZoom('t-shirt-ultracool.jpg')">
-                <div class="overflow-hidden rounded-xl mb-4 shadow-lg"><img src="t-shirt-ultracool.jpg" class="w-full h-[400px] object-cover"></div>
+
+            <div class="product-card group">
+                <div class="zoom-container shadow-xl mb-4" onmousemove="zoom(event)" onmouseleave="resetZoom(event)">
+                    <img src="t-shirt-ultracool.jpg" alt="T-Shirt">
+                </div>
                 <h4 class="font-bold uppercase text-sm">T-Shirt Ultracool</h4>
                 <p class="text-red-600 font-black">R$ 189,90</p>
             </div>
+
         </div>
     </section>
 
-    <div id="zoom-modal" onclick="closeZoom()">
-        <img id="zoom-img" src="">
-    </div>
-
-    <footer class="py-12 bg-zinc-950 text-center border-t border-white/5">
-        <p class="text-[10px] text-zinc-600 uppercase tracking-widest">&copy; 2026 StoRê Sport - Curadoria Premium</p>
-    </footer>
-
     <script>
-        function openZoom(src) {
-            const modal = document.getElementById('zoom-modal');
-            const img = document.getElementById('zoom-img');
-            img.src = src;
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Trava o scroll do site
+        function zoom(e) {
+            const container = e.currentTarget;
+            const img = container.querySelector('img');
+            
+            // Calcula a posição do mouse em percentagem dentro da div
+            const x = e.offsetX / container.offsetWidth * 100;
+            const y = e.offsetY / container.offsetHeight * 100;
+            
+            // Move o ponto de origem do zoom para onde o mouse está
+            img.style.transformOrigin = `${x}% ${y}%`;
         }
 
-        function closeZoom() {
-            const modal = document.getElementById('zoom-modal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Destrava o scroll
+        function resetZoom(e) {
+            const img = e.currentTarget.querySelector('img');
+            img.style.transformOrigin = `center center`;
         }
     </script>
 
