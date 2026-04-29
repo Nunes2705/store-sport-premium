@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StoRê Sport | Coleção Outono/Inverno 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-card {
+            background: #ffffff;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover .image-container img {
+            transform: scale(1.05);
+        }
+
+        .image-container {
+            aspect-ratio: 3/4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9fafb;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* Modal & Lupa */
+        #imageModal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            inset: 0;
+            background-color: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            cursor: zoom-out;
+        }
+
+        .modal-content-wrapper {
+            position: relative;
+            margin: auto;
+            max-width: 90%;
+            max-height: 85vh;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: crosshair;
+        }
+
+        #modalImg {
+            display: block;
+            width: 100%;
+            height: auto;
+            transition: transform 0.1s ease-out;
+        }
+
+        .zoom-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.5);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            pointer-events: none;
+        }
+
+        .star-rating i {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .star-active { color: #facc15; } /* Amarelo tailwind 400 */
+        .star-inactive { color: #d4d4d8; } /* Zinc 300 */
+    </style>
+</head>
+<body class="bg-zinc-950 text-white overflow-x-hidden">
+
+    <!-- Modal com Lupa -->
+    <div id="imageModal" class="flex items-center justify-center p-4" onclick="closeModal(event)">
+        <span class="absolute top-6 right-8 text-white text-4xl hover:text-red-600 transition z-[110] cursor-pointer">&times;</span>
+        <div class="modal-content-wrapper" onclick="event.stopPropagation()" onmousemove="zoomImage(event)" onmouseleave="resetZoom()">
+            <img id="modalImg" src="">
+            <div class="zoom-hint text-white"><i class="fas fa-search-plus mr-2"></i> Mova o mouse para ampliar detalhes</div>
+        </div>
+    </div>
+
+    <!-- Navegação -->
+    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-extrabold tracking-tighter">
+                STO<span class="text-red-600">RÊ</span> <span class="font-light text-zinc-400 text-sm uppercase tracking-widest ml-2">Sport</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
+                <a href="#tecnologia" class="hover:text-red-500 transition">Tecnologia</a>
+                <a href="#colecao" class="hover:text-red-500 transition">Coleção</a>
+                <a href="#feedback" class="hover:text-red-500 transition">Avaliações</a>
+                <a href="#acesso-vip" class="hover:text-red-500 transition">Acesso VIP</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://www.instagram.com/store.modasport/" target="_blank" class="text-white hover:text-red-600 transition"><i class="fab fa-instagram text-xl"></i></a>
+                <a href="https://wa.me/5551996468027?text=Olá,%20Time%20de%20Vendas%20da%20StoRê%20Moda%20Sport!%20Entrei%20no%20site%20da%20loja%20e%20gostaria%20de%20um%20atendimento%20personalizado." target="_blank" class="bg-green-600 px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:bg-green-700 transition flex items-center gap-2">
+                    <i class="fab fa-whatsapp"></i> Contato
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-gradient h-[70vh] flex items-center justify-center pt-20">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl md:text-8xl font-black mb-6 uppercase italic leading-none">
+                Performance<br><span class="text-red-600">Absoluta.</span>
+            </h1>
+            <p class="text-lg text-zinc-300 mb-8 max-w-2xl mx-auto font-light italic">
+                Sinta a tecnologia Rala Bela em cada movimento.
+            </p>
+            <div class="flex flex-col items-center gap-4">
+                <a href="#colecao" class="bg-red-600 hover:bg-red-700 text-white px-10 py-5 rounded-full font-bold transition uppercase tracking-widest inline-block shadow-2xl">
+                    Explorar Lançamentos
+                </a>
+                <p class="text-[10px] uppercase tracking-[0.3em] text-zinc-400">Parcelamento em até 6x no cartão</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vitrine -->
+    <section id="colecao" class="py-24 bg-white text-black">
+        <div class="container mx-auto px-6">
+            <div class="mb-20 text-center">
+                <h2 class="text-4xl font-black uppercase italic">Drop Outono/Inverno 2026</h2>
+                <p class="text-zinc-500 uppercase tracking-widest text-xs mt-2">Toque no produto para ver detalhes com lupa</p>
+                <div class="h-1 w-20 bg-red-600 mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+                
+                <!-- LINHA NEO FIT -->
+                <div class="space-y-8">
+                    <h3 class="font-black uppercase tracking-tighter text-2xl text-center text-zinc-900 border-b border-zinc-100 pb-4">Linha Neo Fit</h3>
+                    <div class="grid grid-cols-1 gap-10">
+                        <div class="product-card group" onclick="openImage(this)">
+                            <div class="image-container mb-4 shadow-sm group-hover:shadow-xl transition-shadow">
+                                <img src="top-neo-fit.jpg" alt="Top Neo Fit" onerror="this.src='https://placehold.co/600x800/f3f4f6/333?text=Top+Neo+Fit'">
+                            </div>
+                            <div class="text-center px-2">
+                                <h4 class="text-lg font-semibold uppercase tracking-tight">Top Neo Fit</h4>
+                                <div class="text-xl font-black text-red-600">R$ 244,90</div>
+                                <p class="text-[10px] text-zinc-400 uppercase font-bold">ou 6x de R$ 40,81</p>
+                            </div>
+                        </div>
+                        <div class="product-card group" onclick="openImage(this)">
+                            <div class="image-container mb-4 shadow-sm group-hover:shadow-xl transition-shadow">
+                                <img src="legging-neo-fit.jpg" alt="Legging Neo Fit" onerror="this.src='https://placehold.co/600x800/f3f4f6/333?text=Legging+Neo+Fit'">
+                            </div>
+                            <div class="text-center px-2">
+                                <h4 class="text-lg font-semibold uppercase tracking-tight">Legging Neo Fit</h4>
+                                <div class="text-xl font-black text-red-600">R$ 294,90</div>
+                                <p class="text-[10px] text-zinc-400 uppercase font-bold">ou 6x de R$ 49,15</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PERFORMANCE PRO -->
+                <div class="space-y-8">
+                    <h3 class="font-black uppercase tracking-tighter text-2xl text-center text-zinc-900 border-b border-zinc-100 pb-4">Performance Pro</h3>
+                    <div class="grid grid-cols-1 gap-10">
+                        <div class="product-card group" onclick="openImage(this)">
+                            <div class="image-container mb-4 shadow-sm group-hover:shadow-xl transition-shadow">
+                                <img src="t-shirt-ultracool.jpg" alt="T-shirt Ultracool" onerror="this.src='https://placehold.co/600x800/f3f4f6/333?text=T-shirt+Ultracool'">
+                            </div>
+                            <div class="text-center px-2">
+                                <h4 class="text-lg font-semibold uppercase tracking-tight">T-shirt Ultracool</h4>
+                                <div class="text-xl font-black text-red-600">R$ 164,90</div>
+                                <p class="text-[10px] text-zinc-400 uppercase font-bold">ou 6x de R$ 27,48</p>
+                            </div>
+                        </div>
+                        <div class="product-card group" onclick="openImage(this)">
+                            <div class="image-container mb-4 shadow-sm group-hover:shadow-xl transition-shadow">
+                                <img src="legging-nz.jpg" alt="Legging NZ" onerror="this.src='https://placehold.co/600x800/f3f4f6/333?text=Legging+NZ'">
+                            </div>
+                            <div class="text-center px-2">
+                                <h4 class="text-lg font-semibold uppercase tracking-tight">Legging NZ</h4>
+                                <div class="text-xl font-black text-red-600">R$ 284,90</div>
+                                <p class="text-[10px] text-zinc-400 uppercase font-bold">ou 6x de R$ 47,48</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- THERMAL & COMFORT -->
+                <div class="space-y-8">
+                    <h3 class="font-black uppercase tracking-tighter text-2xl text-center text-zinc-900 border-b border-zinc-100 pb-4">Thermal & Comfort</h3>
+                    <div class="grid grid-cols-1 gap-10">
+                        <div class="product-card group" onclick="openImage(this)">
+                            <div class="image-container mb-4 shadow-sm group-hover:shadow-xl transition-shadow">
+                                <img src="blusa-termica.jpg" alt="Blusa Térmica" onerror="this.src='https://placehold.co/600x800/f3f4f6/333?text=Blusa+Térmica'">
+                            </div>
+                            <div class="text-center px-2">
+                                <h4 class="text-lg font-semibold uppercase tracking-tight">Blusa Térmica</h4>
+                                <div class="text-xl font-black text-red-600">R$ 144,90</div>
+                                <p class="text-[10px] text-zinc-400 uppercase font-bold">ou 6x de R$ 24,15</p>
+                            </div>
+                        </div>
+                        <div class="product-card group" onclick="openImage(this)">
+                            <div class="image-container mb-4 shadow-sm group-hover:shadow-xl transition-shadow">
+                                <img src="jogging-essence.jpg" alt="Jogging Essence" onerror="this.src='https://placehold.co/600x800/f3f4f6/333?text=Jogging+Essence'">
+                            </div>
+                            <div class="text-center px-2">
+                                <h4 class="text-lg font-semibold uppercase tracking-tight">Jogging Essence</h4>
+                                <div class="text-xl font-black text-red-600">R$ 254,90</div>
+                                <p class="text-[10px] text-zinc-400 uppercase font-bold">ou 6x de R$ 42,48</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Banner de Parcelamento -->
+            <div class="mt-24 p-8 bg-zinc-100 rounded-3xl flex flex-col md:flex-row items-center justify-between border-2 border-dashed border-zinc-300">
+                <div class="flex items-center gap-6 mb-6 md:mb-0">
+                    <div class="bg-black text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div>
+                        <h5 class="text-xl font-black uppercase italic">Facilidade no Pagamento</h5>
+                        <p class="text-zinc-600 text-sm">Leve sua coleção agora e parcele sem preocupações.</p>
+                    </div>
+                </div>
+                <div class="text-center md:text-right">
+                    <span class="text-4xl font-black text-red-600 uppercase tracking-tighter">Até 6x</span>
+                    <p class="text-xs font-bold uppercase tracking-widest text-zinc-400">Sem juros no cartão</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tecnologia -->
+    <section id="tecnologia" class="py-24 bg-zinc-900">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="md:w-1/2">
+                    <h2 class="text-4xl font-black uppercase italic mb-8">DNA Têxtil <br><span class="text-red-600">Inovação Rala Bela</span></h2>
+                    <p class="text-zinc-400 mb-8 leading-relaxed">Nossas peças são desenvolvidas com fios inteligentes que garantem durabilidade, compressão na medida certa e conforto térmico para qualquer estação.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-zinc-800 p-6 rounded-2xl border border-white/5">
+                            <i class="fas fa-wind text-red-600 mb-2"></i>
+                            <h6 class="font-bold text-xs uppercase">Respirável</h6>
+                        </div>
+                        <div class="bg-zinc-800 p-6 rounded-2xl border border-white/5">
+                            <i class="fas fa-shield-alt text-red-600 mb-2"></i>
+                            <h6 class="font-bold text-xs uppercase">UV Protection</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="conjunto.jpeg" class="rounded-3xl shadow-2xl hover:scale-[1.02] transition-all duration-700 w-full object-cover max-h-[600px]" alt="Conjunto StoRê Sport">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Feedback / Avaliação -->
+    <section id="feedback" class="py-24 bg-white text-black border-t border-zinc-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black uppercase italic">Experiência StoRê</h2>
+                <p class="text-zinc-500 uppercase tracking-widest text-xs mt-2">Sua opinião constrói nossa excelência</p>
+                <div class="h-1 w-20 bg-red-600 mx-auto mt-6"></div>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-zinc-50 rounded-[2rem] p-8 md:p-12 shadow-inner">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <!-- Formulário -->
+                    <div class="space-y-6">
+                        <h4 class="text-lg font-bold uppercase italic border-l-4 border-red-600 pl-4">Deixe sua Avaliação</h4>
+                        
+                        <div class="space-y-4">
+                            <!-- Estrelas Atendimento -->
+                            <div class="flex items-center justify-between bg-white p-3 rounded-xl shadow-sm">
+                                <span class="text-xs font-bold uppercase text-zinc-500">Atendimento</span>
+                                <div class="star-rating flex gap-1" data-category="atendimento">
+                                    <i class="fas fa-star star-inactive" onclick="setRating('atendimento', 1)"></i>
+                                    <i class="fas fa-star star-inactive" onclick="setRating('atendimento', 2)"></i>
+                                    <i class="fas fa-star star-inactive" onclick="setRating('atendimento', 3)"></i>
+                                    <i class="fas fa-star star-inactive" onclick="setRating('atendimento', 4)"></i>
+                                    <i class="fas fa-star star-inactive" onclick="setRating('atendimento', 5)"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Estrelas Entrega -->
+                            <div class="flex items-center justify-between bg-white p-3 rounded-xl shadow-sm">
+                                <span class="text-xs font-bold uppercase text-zinc-500">Entrega</span>
+                                <div class="star-rating flex gap-1" data-category="entrega">
+                                    <i class="fas fa-star star-inactive" onclick="setRating('entrega', 1)"></i>
+                                    <i class="fas fa-star star-inactive" onclick="setRating('entrega', 2)"></i>
+                                    <i class="fas fa-star star-inactive" onclick="setRating('entrega', 3)"></i>
+                                    <i class="fas fa-star star-inactive" onclick="setRating('entrega', 4)"></i>
+                                    <i class="fas fa-star star-inactive" onclick="setRating('entrega', 5)"></i>
+                                </div>
+                            </div>
+
+                            <!-- Estrelas Produto -->
+                            <div class="flex items-center justify-between bg-white p-3 rounded-xl shadow-sm">
+                                <span class="text-xs font-bold uppercase text-zinc-500">Produto</span>
+                                <div class="star-rating flex gap-1" data-category="produto">
+                                    <i class="fas fa-star star-inactive" onclick="setRating('produto', 1)"></i>
+                                    <i class="fas fa-star star-inactive" onclick="setRating('produto', 2)"></i>
+                                    <i class="fas fa-star star-inactive" onclick="setRating('produto', 3)"></i>
+                                    <i class="fas fa-star star-inactive" onclick="setRating('produto', 4)"></i>
+                                    <i class="fas fa-star star-inactive" onclick="setRating('produto', 5)"></i>
+                                </div>
+                            </div>
+
+                            <textarea id="feedbackText" placeholder="Conte-nos sua experiência com as peças..." class="w-full bg-white border-none rounded-2xl p-4 text-sm focus:ring-2 focus:ring-red-600 min-h-[120px] shadow-sm"></textarea>
+                            
+                            <button onclick="submitFeedback()" class="w-full bg-black text-white py-4 rounded-xl font-black uppercase tracking-widest hover:bg-zinc-800 transition shadow-lg">Enviar Feedback</button>
+                        </div>
+                    </div>
+
+                    <!-- Amostra de Avaliações -->
+                    <div class="space-y-6">
+                        <h4 class="text-lg font-bold uppercase italic border-l-4 border-zinc-300 pl-4">O que dizem as clientes</h4>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-2xl shadow-sm">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-bold text-xs uppercase">Mariana S.</span>
+                                    <div class="text-yellow-400 text-[10px]">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-zinc-500 leading-relaxed italic">"A legging Neo Fit tem uma compressão maravilhosa. Entrega super rápida aqui em Porto Alegre!"</p>
+                            </div>
+
+                            <div class="bg-white p-4 rounded-2xl shadow-sm">
+                                <div class="flex justify-between mb-2">
+                                    <span class="font-bold text-xs uppercase">Juliana R.</span>
+                                    <div class="text-yellow-400 text-[10px]">
+                                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-zinc-500 leading-relaxed italic">"Atendimento personalizado pelo WhatsApp nota 10. As peças térmicas são essenciais para o meu treino matinal."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Acesso VIP -->
+    <section id="acesso-vip" class="py-24 bg-red-600 text-center relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl md:text-6xl font-black uppercase italic mb-6">Entre para o Clube.</h2>
+            <p class="text-white/80 mb-10 max-w-lg mx-auto text-sm uppercase tracking-[0.2em]">Receba o catálogo completo e ofertas exclusivas.</p>
+            <div class="max-w-md mx-auto flex flex-col md:flex-row gap-4">
+                <input id="vipEmail" type="email" placeholder="SEU E-MAIL" class="flex-grow bg-white text-black px-6 py-4 rounded-full font-bold focus:outline-none">
+                <button onclick="sendVIPEmail()" class="bg-black text-white px-8 py-4 rounded-full font-black uppercase hover:bg-zinc-800 transition shadow-xl">Quero VIP</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Fixo -->
+    <a href="https://wa.me/5551996468027?text=Olá,%20Time%20de%20Vendas%20da%20StoRê%20Moda%20Sport!%20Entrei%20no%20site%20da%20loja%20e%20gostaria%20de%20um%20atendimento%20personalizado." target="_blank" class="fixed bottom-8 right-8 bg-green-500 w-16 h-16 rounded-full flex items-center justify-center text-white text-3xl shadow-2xl hover:scale-110 transition-transform z-[60]">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-zinc-950 text-center border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="text-2xl font-extrabold tracking-tighter mb-6">
+                STO<span class="text-red-600">RÊ</span> SPORT
+            </div>
+            <div class="flex justify-center space-x-8 mb-8 text-zinc-500">
+                <a href="https://www.instagram.com/store.modasport/" class="hover:text-red-600 transition"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/5551996468027" class="hover:text-green-500 transition"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p class="text-[10px] text-zinc-600 uppercase tracking-widest">&copy; 2026 StoRê Sport - Curadoria Premium</p>
+        </div>
+    </footer>
+
+    <script>
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+        
+        let ratings = { atendimento: 0, entrega: 0, produto: 0 };
+
+        function openImage(card) {
+            const img = card.querySelector("img");
+            modal.style.display = "flex";
+            modalImg.src = img.src;
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal(e) {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+            resetZoom();
+        }
+
+        function zoomImage(e) {
+            const wrapper = e.currentTarget;
+            const x = e.clientX - wrapper.offsetLeft;
+            const y = e.clientY - wrapper.offsetTop;
+            const originX = (x / wrapper.offsetWidth) * 100;
+            const originY = (y / wrapper.offsetHeight) * 100;
+            modalImg.style.transformOrigin = `${originX}% ${originY}%`;
+            modalImg.style.transform = "scale(2.5)";
+        }
+
+        function resetZoom() {
+            modalImg.style.transform = "scale(1)";
+        }
+
+        function setRating(category, val) {
+            ratings[category] = val;
+            const stars = document.querySelectorAll(`[data-category="${category}"] i`);
+            stars.forEach((star, index) => {
+                if (index < val) {
+                    star.classList.replace('star-inactive', 'star-active');
+                } else {
+                    star.classList.replace('star-active', 'star-inactive');
+                }
+            });
+        }
+
+        function submitFeedback() {
+            const text = document.getElementById('feedbackText').value;
+            if (ratings.atendimento === 0 || ratings.entrega === 0 || ratings.produto === 0) {
+                alert("Por favor, selecione as estrelas para todas as categorias!");
+                return;
+            }
+            
+            const meuEmail = "remodinhavirtual@gmail.com";
+            const assunto = encodeURIComponent("Feedback StoRê Sport - " + new Date().toLocaleDateString());
+            const corpo = encodeURIComponent(
+                `===== NOVO FEEDBACK RECEBIDO =====\n\n` +
+                `⭐ ATENDIMENTO: ${ratings.atendimento}/5\n` +
+                `⭐ ENTREGA: ${ratings.entrega}/5\n` +
+                `⭐ PRODUTO: ${ratings.produto}/5\n\n` +
+                `💬 COMENTÁRIO DA CLIENTE:\n"${text || 'Sem comentário escrito'}"\n\n` +
+                `================================`
+            );
+            
+            window.location.href = `mailto:${meuEmail}?subject=${assunto}&body=${corpo}`;
+        }
+
+        function sendVIPEmail() {
+            const email = document.getElementById('vipEmail').value;
+            if (!email.includes('@')) { alert("E-mail inválido"); return; }
+            const meuEmail = "remodinhavirtual@gmail.com";
+            const assunto = encodeURIComponent("QUERO ACESSO VIP - StoRê Sport");
+            const corpo = encodeURIComponent("Olá StoRê! Meu e-mail é: " + email + ". Quero receber o catálogo 2026 e as ofertas exclusivas!");
+            window.location.href = `mailto:${meuEmail}?subject=${assunto}&body=${corpo}`;
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closeModal();
+        });
+    </script>
+</body>
+</html>
