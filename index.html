@@ -9,50 +9,97 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; }
-        .image-container { aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; background: #f9fafb; position: relative; overflow: hidden; border-radius: 12px; }
-        .image-container img { width: 100%; height: 100%; object-fit: cover; }
-        .star-active { color: #facc15; }
-        .star-inactive { color: #d4d4d8; }
+        .hero-gradient { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; }
+        .product-card img { aspect-ratio: 3/4; object-fit: cover; border-radius: 12px; transition: transform 0.5s; }
+        .product-card:hover img { transform: scale(1.03); }
     </style>
 </head>
 <body class="bg-zinc-950 text-white overflow-x-hidden">
 
     <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-extrabold tracking-tighter">STO<span class="text-red-600">RÊ</span> SPORT</div>
-            <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
-                <a href="#tecnologia" class="hover:text-red-500">Tecnologia</a>
-                <a href="#colecao" class="hover:text-red-500">Coleção</a>
-                <a href="#feedback" class="hover:text-red-500">Avaliações</a>
+            <div class="text-2xl font-extrabold tracking-tighter italic">STO<span class="text-red-600">RÊ</span> SPORT</div>
+            <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest">
+                <a href="#tecnologia" class="hover:text-red-500 transition">Tecnologia</a>
+                <a href="#colecao" class="hover:text-red-500 transition">Coleção</a>
+                <a href="#feedback" class="hover:text-red-500 transition">Avaliações</a>
             </div>
-            <a href="https://wa.me/5551996468027" target="_blank" class="bg-green-600 px-4 py-2 rounded text-xs font-bold uppercase tracking-widest">Contato</a>
+            <a href="https://wa.me/5551996468027" target="_blank" class="bg-red-600 hover:bg-red-700 px-5 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition">WhatsApp</a>
         </div>
     </nav>
 
-    <section class="hero-gradient h-[70vh] flex items-center justify-center pt-20">
+    <section class="hero-gradient h-[80vh] flex items-center justify-center pt-20">
         <div class="container mx-auto px-6 text-center">
-            <h1 class="text-5xl md:text-8xl font-black mb-6 uppercase italic">Performance<br><span class="text-red-600">Absoluta.</span></h1>
-            <a href="#colecao" class="bg-red-600 hover:bg-red-700 text-white px-10 py-5 rounded-full font-bold uppercase tracking-widest inline-block">Explorar Lançamentos</a>
+            <h1 class="text-6xl md:text-9xl font-black mb-6 uppercase italic leading-none">Performance<br><span class="text-red-600 text-shadow-xl">Absoluta.</span></h1>
+            <p class="text-zinc-400 text-lg mb-10 italic font-light">Sinta a tecnologia Rala Bela em cada movimento.</p>
+            <a href="#colecao" class="bg-white text-black hover:bg-red-600 hover:text-white px-12 py-5 rounded-full font-black uppercase tracking-widest transition-all">Ver Coleção</a>
         </div>
     </section>
 
-    <section id="tecnologia" class="py-24 bg-zinc-900">
+    <section id="tecnologia" class="py-32 bg-zinc-900">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center gap-16">
-                <div class="md:w-1/2">
-                    <h2 class="text-4xl font-black uppercase italic mb-8">DNA Têxtil <br><span class="text-red-600">Inovação Rala Bela</span></h2>
-                    <p class="text-zinc-400 mb-8 leading-relaxed">Nossas peças são desenvolvidas com fios inteligentes que garantem durabilidade e conforto térmico.</p>
+            <div class="flex flex-col md:flex-row items-center gap-20">
+                <div class="md:w-1/2 space-y-8">
+                    <h2 class="text-5xl font-black uppercase italic leading-tight">DNA Têxtil <br><span class="text-red-600">Inovação Rala Bela</span></h2>
+                    <p class="text-zinc-400 text-xl leading-relaxed font-light">Nossas peças são desenvolvidas com fios inteligentes que garantem durabilidade, compressão na medida certa e conforto térmico para qualquer estação.</p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="bg-zinc-800/50 p-8 rounded-3xl border border-white/5 hover:border-red-600/30 transition">
+                            <i class="fas fa-wind text-3xl text-red-600 mb-4"></i>
+                            <h6 class="font-black text-sm uppercase tracking-tighter">Respirabilidade Superior</h6>
+                        </div>
+                        <div class="bg-zinc-800/50 p-8 rounded-3xl border border-white/5 hover:border-red-600/30 transition">
+                            <i class="fas fa-bolt text-3xl text-red-600 mb-4"></i>
+                            <h6 class="font-black text-sm uppercase tracking-tighter">Alta Compressão</h6>
+                        </div>
+                    </div>
                 </div>
                 <div class="md:w-1/2">
-                    <img src="conjunto.jpeg" class="rounded-3xl shadow-2xl w-full object-cover max-h-[600px]" alt="Conjunto StoRê Sport">
+                    <img src="conjunto.jpeg" class="rounded-[2rem] shadow-[0_0_50px_rgba(220,38,38,0.2)] w-full object-cover" alt="Modelo StoRê">
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 bg-zinc-950 text-center border-t border-white/5">
-        <p class="text-[10px] text-zinc-600 uppercase tracking-widest">&copy; 2026 StoRê Sport - Curadoria Premium</p>
+    <section id="colecao" class="py-32 bg-white text-black">
+        <div class="container mx-auto px-6 text-center mb-20">
+            <h2 class="text-5xl font-black uppercase italic mb-4">Drop Outono/Inverno</h2>
+            <p class="text-zinc-500 uppercase tracking-[0.3em] text-xs">Selecione uma peça para ver detalhes</p>
+            <div class="w-20 h-1.5 bg-red-600 mx-auto mt-8"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="product-card group cursor-pointer">
+                <img src="https://placehold.co/600x800/18181b/ffffff?text=Top+Neo+Fit" class="mb-6 shadow-2xl">
+                <h4 class="font-black uppercase italic text-xl">Top Neo Fit</h4>
+                <p class="text-red-600 font-black text-2xl">R$ 244,90</p>
+            </div>
+            <div class="product-card group cursor-pointer">
+                <img src="https://placehold.co/600x800/18181b/ffffff?text=Legging+Neo+Fit" class="mb-6 shadow-2xl">
+                <h4 class="font-black uppercase italic text-xl">Legging Neo Fit</h4>
+                <p class="text-red-600 font-black text-2xl">R$ 294,90</p>
+            </div>
+            <div class="product-card group cursor-pointer">
+                <img src="https://placehold.co/600x800/18181b/ffffff?text=T-shirt+Ultracool" class="mb-6 shadow-2xl">
+                <h4 class="font-black uppercase italic text-xl">T-shirt Ultracool</h4>
+                <p class="text-red-600 font-black text-2xl">R$ 189,90</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="feedback" class="py-32 bg-zinc-100 text-black">
+        <div class="container mx-auto px-6 max-w-4xl bg-white p-12 md:p-20 rounded-[3rem] shadow-xl text-center">
+            <h2 class="text-4xl font-black uppercase italic mb-8 text-zinc-900">Sua opinião é vital</h2>
+            <form action="https://formsubmit.co/remodinhavirtual@gmail.com" method="POST" class="space-y-6 text-left">
+                <input type="text" name="nome" placeholder="Seu Nome" class="w-full p-5 bg-zinc-50 border-none rounded-2xl focus:ring-2 focus:ring-red-600 outline-none" required>
+                <textarea name="mensagem" rows="4" placeholder="Como foi sua experiência com a StoRê?" class="w-full p-5 bg-zinc-50 border-none rounded-2xl focus:ring-2 focus:ring-red-600 outline-none" required></textarea>
+                <button type="submit" class="w-full bg-black text-white py-6 rounded-2xl font-black uppercase tracking-widest hover:bg-red-600 transition-colors">Enviar Feedback</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="py-16 bg-zinc-950 text-center border-t border-white/5">
+        <div class="text-xl font-black mb-4 italic">STO<span class="text-red-600">RÊ</span> SPORT</div>
+        <p class="text-[10px] text-zinc-600 uppercase tracking-[0.5em]">&copy; 2026 StoRê Sport - Curadoria Premium</p>
     </footer>
 
 </body>
